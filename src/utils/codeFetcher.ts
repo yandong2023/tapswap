@@ -22,6 +22,7 @@ async function fetchBitpinCodes(): Promise<TapswapCode[]> {
           codes.push({
             id: Math.random().toString(36).substr(2, 9),
             code: codeMatch[1].trim(),
+            title: codeMatch[1].trim(),
             description: text,
             source: 'BitPin Academy',
             createdAt: new Date().toISOString(),
