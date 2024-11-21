@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="16" cy="16" r="16" fill="#3182CE"/>
+  
+  <!-- 交换箭头图标 -->
+  <path d="M22 12L19 9V11H13V13H19V15L22 12Z" fill="white"/>
+  <path d="M10 20L13 23V21H19V19H13V17L10 20Z" fill="white"/>
+  
+  <!-- T字母 -->
+  <path d="M14 8H18V10H17V24H15V10H14V8Z" fill="white"/>
+</svg>
