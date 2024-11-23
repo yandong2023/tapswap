@@ -7,15 +7,16 @@ import { ko, ru, zhCN, faIR } from 'date-fns/locale'
 interface CodeCardProps {
   code: TapswapCode;
   isRTL?: boolean;
+  locale?: string;
 }
 
-export function CodeCard({ code, isRTL = false }: CodeCardProps) {
+export function CodeCard({ code, isRTL = false, locale }: CodeCardProps) {
   const { t, i18n } = useTranslation('common')
   const { onCopy, hasCopied } = useClipboard(code.code)
   const toast = useToast()
 
   const getDateLocale = () => {
-    switch (i18n.language) {
+    switch (locale || i18n.language) {
       case 'ko':
         return ko
       case 'ru':

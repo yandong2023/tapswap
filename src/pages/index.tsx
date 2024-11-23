@@ -42,16 +42,16 @@ export default function Home() {
 
   useEffect(() => {
     // 处理锚点跳转
-    const { hash } = router;
+    const hash = router.asPath.split('#')[1];
     if (hash) {
       setTimeout(() => {
-        const element = document.getElementById(hash.slice(1));
+        const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
     }
-  }, [router]);
+  }, [router.asPath]);
 
   async function fetchCodes() {
     try {
