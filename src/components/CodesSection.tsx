@@ -1,6 +1,8 @@
 import { Container, SimpleGrid, Heading, Box, Text, Button } from '@chakra-ui/react';
 import { TapswapCode } from '@/types';
 import { CodeCard } from './CodeCard';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 interface CodesSectionProps {
   codes: TapswapCode[];
@@ -17,39 +19,49 @@ export function CodesSection({
   lastUpdate,
   onRefresh,
 }: CodesSectionProps) {
+  const { t } = useTranslation();
+  const { locale } = useRouter();
   const activeCodes = codes.filter(code => code.isActive);
+  const isRTL = locale === 'fa';
+
+  const formatDateTime = (date: Date) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    } as const;
+    
+    return new Intl.DateTimeFormat(locale, options).format(date);
+  };
 
   return (
-    <Box py={20}>
+    <Box py={20} dir={isRTL ? 'rtl' : 'ltr'}>
       <Container maxW="container.xl">
         <Box mb={8} textAlign="center">
           <Heading as="h2" mb={4}>
-            کدهای فعال
+            {t('codes.activeCodes')}
           </Heading>
           <Button
             colorScheme="blue"
             size="sm"
             onClick={onRefresh}
             isLoading={loading}
-            loadingText="در حال به‌روزرسانی"
+            loadingText={t('codes.refreshing')}
           >
-            به‌روزرسانی
+            {t('codes.refresh')}
           </Button>
           {lastUpdate && (
             <Text fontSize="sm" color="gray.500" mt={2}>
-              آخرین به‌روزرسانی: {new Intl.DateTimeFormat('fa-IR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-              }).format(lastUpdate)}
+              {t('codes.lastUpdate')}: {formatDateTime(lastUpdate)}
             </Text>
           )}
         </Box>
 
         {loading && codes.length === 0 && (
-          <Text textAlign="center">در حال بارگذاری...</Text>
+          <Text textAlign="center">{t('codes.loading')}</Text>
         )}
 
         {error && (
@@ -57,19 +69,19 @@ export function CodesSection({
         )}
 
         {!loading && activeCodes.length === 0 && (
-          <Text textAlign="center">هیچ کد فعالی موجود نیست</Text>
+          <Text textAlign="center">{t('codes.noActiveCodes')}</Text>
         )}
 
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
           {activeCodes.map((code) => (
-            <CodeCard key={code.id} code={code} />
+            <CodeCard key={code.id} code={code} isRTL={isRTL} />
           ))}
         </SimpleGrid>
 
         <Box mt={8} textAlign="center" color="gray.500">
-          <Text>برای کپی کردن کد روی آن کلیک کنید</Text>
-          <Text>داده‌ها هر ۵ دقیقه به‌روز می‌شوند</Text>
-          <Text>تعداد کدهای فعال: {activeCodes.length}</Text>
+          <Text>{t('codes.clickToCopy')}</Text>
+          <Text>{t('codes.updateInterval')}</Text>
+          <Text>{t('codes.activeCodeCount')}: {activeCodes.length}</Text>
         </Box>
       </Container>
     </Box>

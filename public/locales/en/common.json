@@ -1,0 +1,154 @@
+{
+  "hero": {
+    "title": "Share and Discover Discount Codes",
+    "subtitle": "Join our community to share and find the best deals worldwide",
+    "description": "A platform for sharing and managing discount codes across multiple languages",
+    "cta": "Get Started"
+  },
+  "features": {
+    "title": "Features",
+    "feature1": "Multi-language Support",
+    "feature1Description": "Support for English, Chinese, Korean, Russian, and Persian",
+    "feature2": "Easy Sharing",
+    "feature2Description": "Share discount codes with just one click",
+    "feature3": "Code Management",
+    "feature3Description": "Track and manage your discount codes",
+    "feature4": "Real-time Updates",
+    "feature4Description": "Get instant updates for new codes"
+  },
+  "howItWorks": {
+    "title": "How TapSwap Works",
+    "step1": {
+      "title": "Find Discount Codes",
+      "description": "Find valid discount codes from trusted online stores"
+    },
+    "step2": {
+      "title": "Copy and Use",
+      "description": "Copy the code with one click and use it in your desired store"
+    },
+    "step3": {
+      "title": "Share Experience",
+      "description": "Share your experience with the code to help others"
+    },
+    "step4": {
+      "title": "Track History",
+      "description": "View your code usage history in your account"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "codes": "Discount Codes",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "history": "History",
+    "settings": "Settings",
+    "language": "Language",
+    "newCodes": "New Codes"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": {
+      "q1": {
+        "question": "What technologies power TapSwap's architecture?",
+        "answer": "TapSwap is built on Next.js for server-side rendering, uses next-i18next for internationalization, and Chakra UI for responsive design. Our backend implements RESTful APIs with rate limiting and caching for optimal performance."
+      },
+      "q2": {
+        "question": "How does TapSwap handle code verification?",
+        "answer": "We employ a multi-stage verification system: automated validation checks, rate limiting to prevent abuse, and a distributed caching layer for real-time code status updates. Each code is verified against merchant APIs where available."
+      },
+      "q3": {
+        "question": "What security measures are in place?",
+        "answer": "TapSwap implements industry-standard security practices including HTTPS encryption, XSS protection, CSRF tokens, and rate limiting. We use secure session management and follow OWASP security guidelines."
+      },
+      "q4": {
+        "question": "How does the internationalization system work?",
+        "answer": "Our i18n system uses next-i18next with JSON-based translation files, supporting RTL languages like Persian. We implement dynamic locale detection, fallback languages, and maintain consistent translations across all supported languages."
+      }
+    }
+  },
+  "history": {
+    "title": "Code History",
+    "noHistory": "No history available",
+    "dateFormat": "MM/DD/YYYY"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "default": "An error occurred",
+    "tryAgain": "Try Again",
+    "fetchFailed": "Error fetching codes, using locally stored data",
+    "code": "Error Code",
+    "loadingError": "Loading Error",
+    "loadingErrorMessage": "There was a problem loading the content",
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundMessage": "The page you're looking for does not seem to exist",
+    "goHome": "Go to Home",
+    "invalidDate": "Invalid date",
+    "copyFailed": "Failed to copy code",
+    "unknown": "An unknown error occurred",
+    "network": "Network error. Please try again",
+    "invalidCode": "Invalid code format",
+    "expired": "This code has expired",
+    "notFound": "Code not found"
+  },
+  "codes": {
+    "title": "Latest Discount Codes",
+    "copy": "Copy Code",
+    "copied": "Copied!",
+    "expires": "Expires",
+    "expired": "Expired",
+    "noExpiration": "No expiration",
+    "source": "Source",
+    "noSource": "No source available",
+    "refresh": "Refresh",
+    "loading": "Loading codes...",
+    "noResults": "No codes found",
+    "empty": "No codes available yet",
+    "validUntil": "Valid until {{date}}",
+    "addNew": "Add New Code",
+    "share": "Share"
+  },
+  "form": {
+    "code": "Code",
+    "description": "Description",
+    "expiryDate": "Expiry Date",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "required": "Required field",
+    "invalidDate": "Invalid date format"
+  },
+  "success": {
+    "copied": "Code copied to clipboard!",
+    "shared": "Code shared successfully!",
+    "added": "New code added successfully!"
+  },
+  "footer": {
+    "brand": "TapSwap",
+    "description": "Multilingual Discount Code Sharing Platform",
+    "copyright": " 2023 TapSwap - tapswapcode.net",
+    "resources": {
+      "title": "Resources",
+      "docs": "User Guide",
+      "api": "Public API",
+      "status": "Service Status"
+    },
+    "company": {
+      "title": "TapSwap",
+      "about": "About Us",
+      "contact": "Contact",
+      "blog": "News & Updates"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookies"
+    },
+    "social": {
+      "github": "TapSwap GitHub",
+      "twitter": "TapSwap Twitter",
+      "telegram": "Telegram Channel",
+      "discord": "Discord Community"
+    }
+  }
+}

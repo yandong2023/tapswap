@@ -5,7 +5,7 @@ export interface TapswapCode {
   description?: string;
   createdAt: string;
   isActive: boolean;
-  source: string;
+  source?: string;
   validUntil?: string;
 }
 

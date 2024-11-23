@@ -1,4 +1,5 @@
 import { Box, Container, SimpleGrid, Text, Stack, Center } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 
 interface FeatureProps {
   title: string;
@@ -54,30 +55,43 @@ const BellIcon = () => (
 );
 
 export function Features() {
+  const { t } = useTranslation('common');
+
+  const features = [
+    {
+      icon: <RefreshIcon />,
+      titleKey: 'features.feature1',
+      textKey: 'features.feature1Description',
+    },
+    {
+      icon: <ClockIcon />,
+      titleKey: 'features.feature2',
+      textKey: 'features.feature2Description',
+    },
+    {
+      icon: <CheckIcon />,
+      titleKey: 'features.feature3',
+      textKey: 'features.feature3Description',
+    },
+    {
+      icon: <BellIcon />,
+      titleKey: 'features.feature4',
+      textKey: 'features.feature4Description',
+    },
+  ];
+
   return (
     <Box p={4} py={20}>
       <Container maxW={'container.xl'}>
         <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
-          <Feature
-            icon={<RefreshIcon />}
-            title={'به‌روزرسانی خودکار'}
-            text={'کدها هر ۵ دقیقه به صورت خودکار به‌روز می‌شوند'}
-          />
-          <Feature
-            icon={<ClockIcon />}
-            title={'تاریخ انقضا'}
-            text={'نمایش وضعیت اعتبار و تاریخ انقضای هر کد'}
-          />
-          <Feature
-            icon={<CheckIcon />}
-            title={'اعتبارسنجی'}
-            text={'بررسی خودکار معتبر بودن کدها'}
-          />
-          <Feature
-            icon={<BellIcon />}
-            title={'اطلاع‌رسانی'}
-            text={'دریافت اعلان برای کدهای جدید'}
-          />
+          {features.map((feature) => (
+            <Feature
+              key={feature.titleKey}
+              icon={feature.icon}
+              title={t(feature.titleKey)}
+              text={t(feature.textKey)}
+            />
+          ))}
         </SimpleGrid>
       </Container>
     </Box>

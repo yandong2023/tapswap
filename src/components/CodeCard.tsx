@@ -1,88 +1,88 @@
-import { Box, Text, useToast, VStack, Badge, HStack } from '@chakra-ui/react';
-import { format } from 'date-fns';
-import { TapswapCode } from '@/types';
+import { Box, Text, Button, useClipboard, useToast } from '@chakra-ui/react'
+import { useTranslation } from 'next-i18next'
+import { TapswapCode } from '@/types'
+import { format, isValid, parseISO } from 'date-fns'
+import { ko, ru, zhCN, faIR } from 'date-fns/locale'
 
 interface CodeCardProps {
   code: TapswapCode;
+  isRTL?: boolean;
 }
 
-export function CodeCard({ code }: CodeCardProps) {
-  const toast = useToast();
+export function CodeCard({ code, isRTL = false }: CodeCardProps) {
+  const { t, i18n } = useTranslation('common')
+  const { onCopy, hasCopied } = useClipboard(code.code)
+  const toast = useToast()
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code.code);
-      toast({
-        title: 'کد کپی شد',
-        status: 'success',
-        duration: 2000,
-        isClosable: true,
-        position: 'top',
-      });
-    } catch (err) {
-      toast({
-        title: 'خطا در کپی کردن کد',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-        position: 'top',
-      });
+  const getDateLocale = () => {
+    switch (i18n.language) {
+      case 'ko':
+        return ko
+      case 'ru':
+        return ru
+      case 'zh':
+        return zhCN
+      case 'fa':
+        return faIR
+      default:
+        return undefined
     }
-  };
+  }
+
+  const formatDate = (dateString: string) => {
+    const date = parseISO(dateString)
+    if (!isValid(date)) return t('errors.invalidDate')
+
+    return format(date, 'PPP', {
+      locale: getDateLocale(),
+    })
+  }
+
+  const handleCopy = () => {
+    onCopy()
+    toast({
+      title: t('success.copied'),
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+      position: isRTL ? 'top-left' : 'top-right',
+    })
+  }
 
   return (
-    <Box
-      p={4}
-      borderWidth="1px"
+    <Box 
+      p={5} 
+      shadow="md" 
+      borderWidth="1px" 
       borderRadius="lg"
-      cursor="pointer"
-      onClick={handleCopy}
-      _hover={{ borderColor: 'blue.500' }}
-      transition="all 0.2s"
-      position="relative"
+      textAlign={isRTL ? 'right' : 'left'}
+      dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <VStack align="stretch" spacing={2}>
-        <HStack justify="space-between">
-          <Text fontSize="lg" fontWeight="bold">
-            {code.title}
-          </Text>
-          <Badge colorScheme={code.isActive ? 'green' : 'red'}>
-            {code.isActive ? 'فعال' : 'منقضی شده'}
-          </Badge>
-        </HStack>
-        
-        <Text
-          fontSize="xl"
-          fontFamily="monospace"
-          color="blue.500"
-          textAlign="center"
-          py={2}
-          bg="gray.50"
-          borderRadius="md"
-        >
-          {code.code}
+      <Text fontSize="xl" fontWeight="bold" mb={2}>
+        {code.title}
+      </Text>
+      <Text color="gray.600" mb={4}>
+        {code.description}
+      </Text>
+      <Text fontSize="sm" color="gray.500" mb={2}>
+        {code.code}
+      </Text>
+      <Text fontSize="sm" color="gray.500" mb={2}>
+        {code.expiresAt && `${t('codes.expires')}: ${formatDate(code.expiresAt)}`}
+      </Text>
+      {code.source && (
+        <Text fontSize="sm" color="gray.500" mb={4}>
+          {t('codes.source')}: {code.source}
         </Text>
-
-        <HStack justify="space-between" fontSize="sm" color="gray.500">
-          <Text>منبع: {code.source}</Text>
-          <Text>
-            تاریخ: {new Intl.DateTimeFormat('fa-IR', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            }).format(new Date(code.createdAt))}
-          </Text>
-        </HStack>
-        {code.validUntil && (
-          <HStack justify="space-between" fontSize="sm" color="gray.500">
-            <Text>تاریخ انقضا: {new Intl.DateTimeFormat('fa-IR', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            }).format(new Date(code.validUntil))}</Text>
-          </HStack>
-        )}
-      </VStack>
+      )}
+      <Button 
+        onClick={handleCopy} 
+        colorScheme="blue" 
+        size="sm"
+        float={isRTL ? 'left' : 'right'}
+      >
+        {hasCopied ? t('codes.copied') : t('codes.copy')}
+      </Button>
     </Box>
-  );
+  )
 }

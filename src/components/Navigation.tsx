@@ -1,35 +1,42 @@
-import { Box, Container, HStack } from '@chakra-ui/react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { Box, Container, Flex, Button, useColorModeValue, Spacer } from '@chakra-ui/react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function Navigation() {
-  const router = useRouter();
-  const isActive = (path: string) => router.pathname === path;
+  const router = useRouter()
+  const { t } = useTranslation('common')
+  const bgColor = useColorModeValue('white', 'gray.800')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
-    <Box bg="blue.500" color="white" py={4} mb={8}>
+    <Box 
+      as="nav" 
+      py={4} 
+      borderBottom="1px" 
+      borderColor={borderColor}
+      bg={bgColor}
+      position="sticky"
+      top={0}
+      zIndex={1000}
+    >
       <Container maxW="container.xl">
-        <HStack spacing={8}>
-          <Link
-            href="/"
-            style={{
-              fontWeight: isActive('/') ? 'bold' : 'normal',
-              textDecoration: 'none'
-            }}
-          >
-            کدهای جدید
+        <Flex align="center">
+          <Link href="/" locale={router.locale} passHref>
+            <Button as="a" variant="ghost">
+              {t('nav.home')}
+            </Button>
           </Link>
-          <Link
-            href="/history"
-            style={{
-              fontWeight: isActive('/history') ? 'bold' : 'normal',
-              textDecoration: 'none'
-            }}
-          >
-            تاریخچه
+          <Link href="/history" locale={router.locale} passHref>
+            <Button as="a" variant="ghost" ml={4}>
+              {t('nav.history')}
+            </Button>
           </Link>
-        </HStack>
+          <Spacer />
+          <LanguageSwitcher />
+        </Flex>
       </Container>
     </Box>
-  );
+  )
 }

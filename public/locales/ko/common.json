@@ -1,0 +1,177 @@
+{
+  "hero": {
+    "title": "할인 코드 공유 및 발견",
+    "subtitle": "전 세계 최고의 할인을 공유하고 찾는 커뮤니티에 참여하세요",
+    "description": "다국어를 지원하는 할인 코드 공유 및 관리 플랫폼",
+    "getStarted": "시작하기",
+    "cta": "시작하기"
+  },
+  "features": {
+    "title": "기능",
+    "feature1": "다국어 지원",
+    "feature1Description": "영어, 중국어, 한국어, 러시아어, 페르시아어 지원",
+    "feature2": "간편한 공유",
+    "feature2Description": "원클릭으로 할인 코드 공유",
+    "feature3": "코드 관리",
+    "feature3Description": "할인 코드 추적 및 관리",
+    "feature4": "실시간 업데이트",
+    "feature4Description": "새로운 코드에 대한 즉시 업데이트"
+  },
+  "howItWorks": {
+    "title": "기술 아키텍처",
+    "description": "할인 코드를 쉽게 사용하고 쇼핑 비용을 절약하세요",
+    "step1": {
+      "title": "데이터 수집",
+      "description": "고성능 웹 크롤러와 API를 통해 실시간으로 할인 코드 데이터를 수집"
+    },
+    "step2": {
+      "title": "데이터 처리",
+      "description": "Next.js와 Node.js 기반 시스템으로 할인 코드의 유효성을 검증"
+    },
+    "step3": {
+      "title": "AI 최적화",
+      "description": "머신러닝 알고리즘을 활용하여 최적의 할인 코드를 선별"
+    },
+    "step4": {
+      "title": "분석 리포트",
+      "description": "실시간 데이터 분석과 사용 통계를 제공하여 품질 보장"
+    }
+  },
+  "howTo": {
+    "title": "이용 방법",
+    "useCode": "할인 코드 사용",
+    "copyAndSelect": "선택 및 복사",
+    "viewCodes": "할인 코드 보기",
+    "steps": {
+      "step1": "원하는 할인 코드를 선택하세요",
+      "step2": "코드를 클릭하여 복사하세요",
+      "step3": "대상 웹사이트에서 코드를 입력하세요",
+      "step4": "할인 혜택을 누리세요"
+    }
+  },
+  "nav": {
+    "home": "홈페이지",
+    "features": "기능",
+    "codes": "할인 코드",
+    "howItWorks": "이용 방법",
+    "faq": "자주 묻는 질문",
+    "history": "사용 기록",
+    "settings": "설정",
+    "language": "언어",
+    "newCodes": "새로운 코드"
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "questions": {
+      "q1": {
+        "question": "TapSwap의 기술 아키텍처는 어떻게 구성되어 있나요?",
+        "answer": "TapSwap은 서버 사이드 렌더링을 위한 Next.js, 국제화를 위한 next-i18next, 반응형 디자인을 위한 Chakra UI를 사용합니다. 백엔드는 최적의 성능을 위해 속도 제한과 캐싱이 포함된 RESTful API를 구현하고 있습니다."
+      },
+      "q2": {
+        "question": "TapSwap은 코드 검증을 어떻게 처리하나요?",
+        "answer": "자동 유효성 검사, 남용 방지를 위한 속도 제한, 실시간 코드 상태 업데이트를 위한 분산 캐싱 레이어 등 다단계 검증 시스템을 사용합니다. 가능한 경우 각 코드는 판매자 API를 통해 검증됩니다."
+      },
+      "q3": {
+        "question": "어떤 보안 조치가 마련되어 있나요?",
+        "answer": "TapSwap은 HTTPS 암호화, XSS 보호, CSRF 토큰, 속도 제한 등 업계 표준 보안 관행을 구현합니다. 안전한 세션 관리를 사용하고 OWASP 보안 지침을 따릅니다."
+      },
+      "q4": {
+        "question": "국제화 시스템은 어떻게 작동하나요?",
+        "answer": "JSON 기반 번역 파일을 사용하는 next-i18next를 활용하며, 페르시아어와 같은 RTL 언어를 지원합니다. 동적 로케일 감지, 대체 언어 지원을 구현하고 모든 지원 언어에서 일관된 번역을 유지합니다."
+      }
+    }
+  },
+  "history": {
+    "title": "할인 코드 기록",
+    "description": "사용한 할인 코드의 기록을 확인하세요",
+    "noHistory": "기록이 없습니다",
+    "table": {
+      "status": "상태",
+      "code": "할인 코드",
+      "date": "날짜",
+      "source": "출처",
+      "discount": "할인율"
+    },
+    "status": {
+      "success": "성공",
+      "failed": "실패",
+      "pending": "대기 중"
+    },
+    "date": "{{date}}",
+    "dateFormat": "YYYY년 MM월 DD일"
+  },
+  "errors": {
+    "title": "오류가 발생했습니다",
+    "default": "오류가 발생했습니다",
+    "tryAgain": "다시 시도",
+    "fetchFailed": "코드를 불러오는데 실패했습니다. 로컬 데이터를 사용합니다",
+    "code": "오류 코드",
+    "loadingError": "로딩 오류",
+    "loadingErrorMessage": "콘텐츠를 불러오는데 문제가 발생했습니다",
+    "pageNotFound": "페이지를 찾을 수 없습니다",
+    "pageNotFoundMessage": "요청하신 페이지를 찾을 수 없습니다",
+    "goHome": "홈으로 돌아가기",
+    "invalidDate": "잘못된 날짜",
+    "copyFailed": "복사 실패"
+  },
+  "codes": {
+    "activeCodes": "활성화된 할인 코드",
+    "copy": "복사",
+    "copied": "코드가 복사되었습니다!",
+    "refresh": "새로고침",
+    "refreshing": "새로고침 중...",
+    "expires": "만료일",
+    "noExpiration": "만료일 없음",
+    "source": "출처",
+    "noSource": "출처 없음",
+    "loading": "코드를 불러오는 중...",
+    "noResults": "코드를 찾을 수 없습니다",
+    "expired": "만료됨",
+    "lastUpdate": "마지막 업데이트",
+    "noActiveCodes": "활성화된 코드가 없습니다",
+    "clickToCopy": "코드를 클릭하여 복사하세요",
+    "updateInterval": "데이터는 5분마다 업데이트됩니다",
+    "activeCodeCount": "활성화된 코드 수",
+    "count": "개",
+    "totalCount": "전체 코드 수"
+  },
+  "footer": {
+    "brand": "TapSwap",
+    "description": "글로벌 할인 코드 공유 플랫폼",
+    "copyright": " 2024 TapSwap. 모든 권리 보유",
+    "resources": {
+      "title": "리소스",
+      "docs": "문서",
+      "api": "API",
+      "status": "시스템 상태"
+    },
+    "company": {
+      "title": "회사",
+      "about": "회사 소개",
+      "contact": "문의하기",
+      "blog": "블로그"
+    },
+    "legal": {
+      "title": "법적 고지",
+      "terms": "이용약관",
+      "privacy": "개인정보처리방침",
+      "cookies": "쿠키 정책"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "discord": "Discord",
+      "instagram": "Instagram"
+    }
+  },
+  "meta": {
+    "title": "TapSwap - 할인 코드 공유 플랫폼",
+    "description": "최신 할인 코드를 발견하고 공유하세요. 실시간 업데이트, 무료로 이용하세요.",
+    "keywords": "할인코드,프로모션코드,쿠폰,쇼핑할인,절약,TapSwap",
+    "ogTitle": "TapSwap - 당신의 할인 코드 공유 플랫폼",
+    "ogDescription": "TapSwap에서 최신 할인 코드를 찾아보세요. 모든 코드는 실시간으로 업데이트되며 무료로 이용 가능합니다.",
+    "twitterTitle": "TapSwap 할인 코드 플랫폼",
+    "twitterDescription": "최신 할인 코드를 발견하고 공유하세요"
+  }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- 主页 -->
+  <url>
+    <loc>https://tapswapcode.net</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tapswapcode.net/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://tapswapcode.net/zh"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tapswapcode.net/ko"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://tapswapcode.net/fa"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tapswapcode.net/ru"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- 历史页面 -->
+  <url>
+    <loc>https://tapswapcode.net/history</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tapswapcode.net/en/history"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://tapswapcode.net/zh/history"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://tapswapcode.net/ko/history"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://tapswapcode.net/fa/history"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tapswapcode.net/ru/history"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
