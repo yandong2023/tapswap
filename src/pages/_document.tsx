@@ -13,6 +13,12 @@ class MyDocument extends Document<DocumentProps> {
           <meta name="theme-color" content="#3182CE" />
           <meta name="google-site-verification" content="collFDWKf0XUI7TpAqf2fr7Ai_fz587la0_84Uzp7Gk" />
           
+          {/* Add canonical URL */}
+          <link 
+            rel="canonical" 
+            href={`https://tapswapcode.net${currentLocale === 'en' ? '' : `/${currentLocale}`}`} 
+          />
+          
           {/* 添加多语言支持的元标签 */}
           <link rel="alternate" href="https://tapswapcode.net" hrefLang="x-default" />
           <link rel="alternate" href="https://tapswapcode.net/en" hrefLang="en" />
@@ -30,6 +36,27 @@ class MyDocument extends Document<DocumentProps> {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', 'G-EM390M5M95');
+              `
+            }}
+          />
+          
+          {/* 添加结构化数据 */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: `
+                {
+                  "@context": "https://schema.org",
+                  "@type": "WebSite",
+                  "name": "TapSwap优惠码分享平台",
+                  "description": "智能优惠码管理系统，实时更新全网优惠券，支持淘宝天猫优惠券、京东优惠码等多平台优惠",
+                  "url": "https://tapswapcode.net",
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://tapswapcode.net/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  }
+                }
               `
             }}
           />

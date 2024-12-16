@@ -15,19 +15,11 @@ import { useRouter } from 'next/router';
 
 export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
   const defaultLocale = 'en'
+  const finalLocale = locale || defaultLocale
   
-  if (locale === undefined) {
-    return {
-      redirect: {
-        destination: `/${defaultLocale}`,
-        permanent: false,
-      },
-    }
-  }
-
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(finalLocale, ['common'])),
     },
   }
 }
