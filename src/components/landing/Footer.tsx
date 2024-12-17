@@ -1,4 +1,5 @@
 import { Box, Container, Stack, Text, Link, IconButton, HStack } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 
 // 社交媒体图标组件
 const GithubIcon = () => (
@@ -22,6 +23,8 @@ const InstagramIcon = () => (
 );
 
 export function Footer() {
+  const { t } = useTranslation('common');
+  
   return (
     <Box bg="gray.50" color="gray.700" py={10}>
       <Container maxW="container.xl">
@@ -31,37 +34,37 @@ export function Footer() {
           justify="space-between"
           align="center"
         >
-          <Text> 2024 تپ‌سواپ. تمام حقوق محفوظ است.</Text>
+          <Text>{t('footer.copyright', { year: new Date().getFullYear() })}</Text>
           
           <HStack spacing={4}>
             <Link href="#" _hover={{ textDecoration: 'none', color: 'blue.500' }}>
-              درباره ما
+              {t('footer.company.about')}
             </Link>
             <Link href="#" _hover={{ textDecoration: 'none', color: 'blue.500' }}>
-              تماس با ما
+              {t('footer.company.contact')}
             </Link>
             <Link href="#" _hover={{ textDecoration: 'none', color: 'blue.500' }}>
-              حریم خصوصی
+              {t('footer.legal.privacy')}
             </Link>
           </HStack>
 
           <HStack spacing={4}>
             <IconButton
-              aria-label="Github"
+              aria-label={t('footer.social.github')}
               icon={<GithubIcon />}
               size="md"
               variant="ghost"
               _hover={{ bg: 'blue.50' }}
             />
             <IconButton
-              aria-label="Twitter"
+              aria-label={t('footer.social.twitter')}
               icon={<TwitterIcon />}
               size="md"
               variant="ghost"
               _hover={{ bg: 'blue.50' }}
             />
             <IconButton
-              aria-label="Instagram"
+              aria-label={t('footer.social.instagram')}
               icon={<InstagramIcon />}
               size="md"
               variant="ghost"

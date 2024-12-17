@@ -1,10 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Container, VStack, Heading, Divider, Text, Box, Button } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import { CodeCard } from '@/components/CodeCard';
 import { TapswapCode } from '@/types';
 import { getFromLocalStorage } from '@/utils/storage';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+};
 
 export default function History() {
+  const { t } = useTranslation('common');
+  const router = useRouter();
+  const isRTL = router.locale === 'fa';
   const [codes, setCodes] = useState<TapswapCode[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -21,7 +35,7 @@ export default function History() {
       setCodes(data);
       setLastUpdate(new Date());
     } catch (err) {
-      setError('خطا در دریافت کدها، استفاده از داده‌های ذخیره شده محلی');
+      setError(t('errors.fetchFailed'));
       console.error('Error:', err);
       const localCodes = getFromLocalStorage();
       if (localCodes.length > 0) {
@@ -42,10 +56,9 @@ export default function History() {
     fetchCodes();
   }, []);
 
-  // گروه‌بندی کدها بر اساس تاریخ
+  // 根据日期分组代码
   const groupedCodes = codes.reduce((groups: Record<string, TapswapCode[]>, code) => {
-    // تبدیل تاریخ به فرمت شمسی
-    const date = new Intl.DateTimeFormat('fa-IR', {
+    const date = new Intl.DateTimeFormat(isRTL ? 'fa-IR' : router.locale || 'en', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -58,7 +71,7 @@ export default function History() {
     return groups;
   }, {});
 
-  // مرتب‌سازی تاریخ‌ها به صورت نزولی
+  // 按日期降序排序
   const sortedDates = Object.keys(groupedCodes).sort((a, b) => {
     return new Date(b).getTime() - new Date(a).getTime();
   });
@@ -66,21 +79,21 @@ export default function History() {
   return (
     <Container maxW="container.xl" py={8}>
       <Box mb={8} textAlign="center">
-        <Heading as="h1" mb={4}>
-          تاریخچه کدهای تپ‌سواپ
+        <Heading as="h1" mb={4} textAlign={isRTL ? 'right' : 'left'}>
+          {t('history.title')}
         </Heading>
         <Button
           colorScheme="blue"
           size="sm"
           onClick={fetchCodes}
           isLoading={loading}
-          loadingText="در حال به‌روزرسانی"
+          loadingText={t('codes.refreshing')}
         >
-          به‌روزرسانی
+          {t('codes.refresh')}
         </Button>
         {lastUpdate && (
-          <Text fontSize="sm" color="gray.500" mt={2}>
-            آخرین به‌روزرسانی: {new Intl.DateTimeFormat('fa-IR', {
+          <Text fontSize="sm" color="gray.500" mt={2} textAlign={isRTL ? 'right' : 'left'}>
+            {t('codes.lastUpdate')}: {new Intl.DateTimeFormat(isRTL ? 'fa-IR' : router.locale || 'en', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -92,7 +105,7 @@ export default function History() {
       </Box>
 
       {loading && codes.length === 0 && (
-        <Text textAlign="center">در حال بارگذاری...</Text>
+        <Text textAlign="center">{t('codes.loading')}</Text>
       )}
 
       {error && (
@@ -100,28 +113,28 @@ export default function History() {
       )}
 
       {!loading && sortedDates.length === 0 && (
-        <Text textAlign="center">هیچ کد تاریخی موجود نیست</Text>
+        <Text textAlign="center">{t('codes.noResults')}</Text>
       )}
 
       <VStack spacing={8} align="stretch">
         {sortedDates.map((date) => (
-          <div key={date}>
-            <Heading as="h2" size="md" mb={4}>
-              {date} ({groupedCodes[date].length} کد)
+          <Box key={date}>
+            <Heading size="md" mb={4} textAlign={isRTL ? 'right' : 'left'}>
+              {date} ({groupedCodes[date].length} {t('codes.count')})
             </Heading>
+            <Divider mb={4} />
             <VStack spacing={4} align="stretch">
               {groupedCodes[date].map((code) => (
-                <CodeCard key={code.id} code={code} />
+                <CodeCard key={code.id} code={code} locale={isRTL ? 'fa' : router.locale || 'en'} />
               ))}
             </VStack>
-            <Divider mt={4} />
-          </div>
+          </Box>
         ))}
       </VStack>
 
       <Box mt={8} textAlign="center" color="gray.500">
-        <Text>برای کپی کردن کد روی آن کلیک کنید</Text>
-        <Text>مجموع کدها: {codes.length}</Text>
+        <Text>{t('codes.clickToCopy')}</Text>
+        <Text>{t('codes.totalCount')}: {codes.length}</Text>
       </Box>
     </Container>
   );
