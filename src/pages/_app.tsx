@@ -6,11 +6,31 @@ import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import '@/i18n'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { useEffect } from 'react';
+
+// 添加性能监控
+export function reportWebVitals(metric) {
+  if (metric.label === 'web-vital') {
+    console.log(metric); // 发送到分析服务
+  }
+}
+
+// 预加载其他语言页面
+const prefetchOtherLocales = (currentLocale) => {
+  const locales = ['en', 'fa', 'zh', 'ko', 'ru'].filter(l => l !== currentLocale);
+  locales.forEach(locale => {
+    router.prefetch(`/${locale}`);
+  });
+};
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { t } = useTranslation('common');
   const isRTL = router.locale === 'fa';
+
+  useEffect(() => {
+    prefetchOtherLocales(router.locale);
+  }, [router.locale]);
 
   return (
     <ErrorBoundary>

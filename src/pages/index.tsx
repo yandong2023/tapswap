@@ -12,6 +12,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { TapswapCode } from '@/types';
 import { getFromLocalStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
+import { Head } from 'next/head';
 
 export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
   const defaultLocale = 'en'
@@ -82,6 +83,11 @@ export default function Home() {
 
   return (
     <Box as="main">
+      <Head>
+        <title>TapSwap Codes | کد تپ سواپ امروز</title>
+        <meta name="description" content="Get latest TapSwap codes and کد تپ سواپ امروز. Daily updated codes and rewards." />
+        <meta name="keywords" content="tapswap code, کد تپ سواپ امروز, tap swap codes, tapswap rewards" />
+      </Head>
       <Hero />
       <Box id="features">
         <Features />

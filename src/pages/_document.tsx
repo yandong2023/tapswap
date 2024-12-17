@@ -60,6 +60,10 @@ class MyDocument extends Document<DocumentProps> {
               `
             }}
           />
+          
+          {/* 添加语言标记 */}
+          <link rel="alternate" hreflang="fa" href="https://tapswapcode.net/fa" />
+          <link rel="alternate" hreflang="en" href="https://tapswapcode.net/en" />
         </Head>
         <body>
           <Main />
