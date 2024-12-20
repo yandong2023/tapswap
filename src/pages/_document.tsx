@@ -13,6 +13,16 @@ class MyDocument extends Document<DocumentProps> {
           <meta name="theme-color" content="#3182CE" />
           <meta name="google-site-verification" content="collFDWKf0XUI7TpAqf2fr7Ai_fz587la0_84Uzp7Gk" />
           
+          {currentLocale === 'fa' && (
+            <>
+              <meta name="description" content="جدیدترین کدهای تخفیف را کشف و به اشتراک بگذارید. به‌روزرسانی در لحظه، استفاده رایگان." />
+              <meta name="keywords" content="کد تخفیف,کد تخفیف فروشگاه,کوپن تخفیف,تخفیف خرید,صرفه‌جویی,TapSwap" />
+              <meta property="og:title" content="TapSwap - پلتفرم اشتراک‌گذاری کد تخفیف" />
+              <meta property="og:description" content="جدیدترین کدهای تخفیف را کشف و به اشتراک بگذارید. به‌روزرسانی در لحظه، استفاده رایگان." />
+              <meta property="og:locale" content="fa_IR" />
+            </>
+          )}
+          
           {/* 添加多语言支持的元标签 */}
           <link rel="alternate" href="https://tapswapcode.net" hrefLang="x-default" />
           <link rel="alternate" href="https://tapswapcode.net/en" hrefLang="en" />

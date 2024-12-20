@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Allow all language versions
+Allow: /en/
+Allow: /zh/
+Allow: /fa/
+Allow: /ru/
+Allow: /ko/
+
+# Sitemap
+Sitemap: https://tapswapcode.net/sitemap.xml
