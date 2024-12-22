@@ -6,7 +6,7 @@ import { HowItWorks } from '@/components/landing/HowItWorks';
 import { FAQ } from '@/components/landing/FAQ';
 import { Footer } from '@/components/landing/Footer';
 import { CodesSection } from '@/components/CodesSection';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { TapswapCode } from '@/types';
@@ -14,7 +14,11 @@ import { getFromLocalStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
 import { SEO } from '@/components/SEO';
 
-export const getServerSideProps: GetServerSideProps = async ({ req, locale, resolvedUrl }) => {
+interface HomeProps {
+  canonical?: string;
+}
+
+export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ req, locale, resolvedUrl }) => {
   const defaultLocale = 'en'
   const host = req.headers.host || 'tapswap.com'
   const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
@@ -36,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale, reso
   }
 }
 
-export default function Home({ canonical }) {
+export default function Home({ canonical }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [codes, setCodes] = useState<TapswapCode[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
