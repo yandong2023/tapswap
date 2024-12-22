@@ -12,15 +12,18 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { TapswapCode } from '@/types';
 import { getFromLocalStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
+import { SEO } from '@/components/SEO';
 
-export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, locale, resolvedUrl }) => {
   const defaultLocale = 'en'
+  const host = req.headers.host || 'tapswap.com'
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
   
   if (locale === undefined) {
     return {
       redirect: {
-        destination: `/${defaultLocale}`,
-        permanent: false,
+        destination: `/${defaultLocale}${resolvedUrl}`,
+        permanent: true,
       },
     }
   }
@@ -28,11 +31,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      canonical: `${protocol}://${host}/${locale}${resolvedUrl}`,
     },
   }
 }
 
-export default function Home() {
+export default function Home({ canonical }) {
   const [codes, setCodes] = useState<TapswapCode[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -90,6 +94,7 @@ export default function Home() {
 
   return (
     <Box as="main">
+      <SEO canonical={canonical} />
       <Hero />
       <Box id="features">
         <Features />
