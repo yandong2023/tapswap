@@ -23,6 +23,10 @@ export const SEO: React.FC<SEOProps> = ({
       {/* Canonical URL */}
       {canonical && <link rel="canonical" href={canonical} />}
       
+      {/* Language-specific meta tags */}
+      <meta httpEquiv="content-language" content={currentLocale} />
+      <meta property="og:locale" content={currentLocale} />
+      
       {/* Alternate language versions */}
       {locales?.map((locale) => (
         <link
@@ -39,6 +43,11 @@ export const SEO: React.FC<SEOProps> = ({
         hrefLang="x-default"
         href={`${canonical?.split('/').slice(0, -1).join('/')}/en${router.pathname}`}
       />
+      
+      {/* RTL direction for Persian */}
+      {currentLocale === 'fa' && (
+        <html lang="fa" dir="rtl" />
+      )}
       
       {/* No index for non-canonical URLs */}
       {!canonical && <meta name="robots" content="noindex,follow" />}
